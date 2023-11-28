@@ -1,4 +1,5 @@
 const Training = require("../models/Training");
+const ErrorResponse = require('../utils/errorResponse')
 // @desc   Get all trainings
 // @route  GET /api/trainings
 // @access Public
@@ -22,7 +23,7 @@ exports.getTraining = async (req, res, next) => {
         }
         res.status(200).json({ success: true, data: training });
     } catch (error) {
-        next(error)
+        next( new ErrorResponse(`Course id (${req.params.id}) not correct`, 404));
     }
 };
 
